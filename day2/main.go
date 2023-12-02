@@ -82,6 +82,11 @@ func part1() int {
 	return sum
 }
 
+func part2() int {
+	// Test input should be: 2286
+	return 0
+}
+
 func valid_check(game Game) bool {
 	if game.red <= 12 && game.blue <= 14 && game.green <= 13 {
 		return true
@@ -92,4 +97,5 @@ func valid_check(game Game) bool {
 
 func main() {
 	println("Part 1: ", part1())
+	println("Part 2: ", part2())
 }
