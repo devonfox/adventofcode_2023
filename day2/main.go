@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"os"
+	"strings"
 )
 
 type Roll struct {
@@ -22,7 +23,15 @@ func part1() int {
 
 	for buffer.Scan() {
 		line := buffer.Text()
-		println(line)
+
+		result := strings.Split(line, ":")
+
+		for _, slice := range result {
+
+			println(slice)
+		}
+
+		// println(line)
 	}
 	return sum
 }
