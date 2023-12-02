@@ -22,7 +22,7 @@ func part1() int {
 
 	buffer := bufio.NewScanner(file)
 	first := ""
-	second := ""
+	last := ""
 	sum := 0
 	// lookin at each line from the file
 	for buffer.Scan() {
@@ -38,11 +38,11 @@ func part1() int {
 		}
 		for i := len(word) - 1; i >= 0; i-- {
 			if unicode.IsDigit(rune(word[i])) {
-				second = string(word[i])
+				last = string(word[i])
 				break
 			}
 		}
-		lineNum, _ := strconv.Atoi(first + second)
+		lineNum, _ := strconv.Atoi(first + last)
 		sum += lineNum
 
 	}
@@ -52,7 +52,6 @@ func part1() int {
 }
 
 func part2() int {
-
 	puzzleInput := "input.txt"
 
 	check := [10]string{" ", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
@@ -68,8 +67,8 @@ func part2() int {
 		word := buffer.Text()
 
 		for i := 0; i < len(check); i++ {
-			start := findBounds(word, check[i])
-			if start != -1 {
+			starts := findBounds(word, check[i])
+			for _, start := range starts {
 				order = append(order, Index{start, check[i]})
 				// println(check[i], "found at", start)
 			}
@@ -108,7 +107,7 @@ func part2() int {
 				}
 			}
 		}
-		result := ""
+		result := "0"
 
 		if len(order) > 1 {
 			result = first + last
@@ -127,12 +126,22 @@ func part2() int {
 	return sum
 }
 
-func findBounds(input, toFind string) int {
-	start := strings.Index(input, toFind)
-	if start == -1 {
-		return -1
+func findBounds(input, toFind string) []int {
+	var indices []int
+	start := 0
+
+	for {
+		index := strings.Index(input[start:], toFind)
+
+		if index == -1 {
+			break
+		}
+
+		indices = append(indices, start+index)
+		start += index + len(toFind)
 	}
-	return start
+
+	return indices
 }
 
 func main() {
