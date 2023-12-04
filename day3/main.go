@@ -52,6 +52,10 @@ func part1() int {
 	return sum
 }
 
+func part2() int {
+	return 0
+}
+
 // This is a monstrosity, but it works lol
 func checkValid(i int, j int, inputArray []string) bool {
 
@@ -110,5 +114,6 @@ func checkWord(valid []bool) bool {
 
 func main() {
 	println("\nPart 1: ", part1())
+	println("\nPart 2: ", part2())
 
 }
