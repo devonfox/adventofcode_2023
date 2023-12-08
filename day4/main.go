@@ -56,7 +56,7 @@ func gradeCard(card *Card) int {
 		for j := 0; j < len(card.board); j++ {
 
 			if card.winning[i] == card.board[j] {
-				matches = append(matches, card.winning[i])
+				_ = append(matches, card.winning[i])
 				wins++
 				break
 			}
